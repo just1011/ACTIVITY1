@@ -9,10 +9,44 @@
 
 </head>
 <style>
+    * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
     
     body{
   background-image: url(images/bg.png);
   background-position: 0cm;
+}
+.header {
+    width: 100%;
+    height: 15vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 80px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+nav {
+    flex: 1;
+    padding-left: 450px;
+}
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
 }
         .container1{
             max-width: 1100px;
@@ -84,6 +118,7 @@
         display: inline-block;
         text-align: center;
         padding: 15px 24px;
+        border-radius: 3px;
         text-transform: uppercase;
         font-size: 11px;
         color: #fff;
@@ -91,13 +126,25 @@
         text-decoration: none;
         letter-spacing: 0.5px;
       }
-          .center {
-        display: flex;
+      .center {
         justify-content: center;
-        align-items: center;
-        }
+        text-align: center;
+      }
+      
     </style>
 <body>
+    <div class="container2">
+        <div class="header">
+            <img src="images/logo.png" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Products</a></li>
+                    <li><a href="fire.html">Community Crud</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
 
     <div class="container">
         <h1>Contact Us</h1>
@@ -133,7 +180,7 @@
     // create a function to send data
     function sendData(){
         var name = document.querySelectorAll('input')[0]
-        var email = document.querySelectorAll('input')[1]
+        var address = document.querySelectorAll('input')[1]
         var message = document.querySelector('textarea')
 
         alert("Data Inserted");
@@ -148,7 +195,7 @@
         newRef.set({
             // now send our data
             'name': name.value,
-            'email': email.value,
+            'address': address.value,
             'message': message.value
         })
     }
@@ -158,6 +205,9 @@
 </script>
 </body>
 
+<body>
+
+ 
 <!-- add firebase CDN -->
 
 <script>
@@ -175,7 +225,7 @@
           htmlData += `
               <tr>
                   <td>${value.name}</td>
-                  <td>${value.email}</td>
+                  <td>${value.address}</td>
                   <td>${value.message}</td>
                   <td>
                       <button onclick="readyForUpdate('${key}', this)">Update</button>
@@ -217,7 +267,7 @@
       // now create obj using same keys as used during sending
       var obj = {
           'name': contentId[0].textContent,
-          'email': contentId[1].textContent,
+          'address': contentId[1].textContent,
           'message': contentId[2].textContent
       }
       // create reference to the data first where data will update
